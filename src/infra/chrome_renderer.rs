@@ -34,7 +34,10 @@ impl DiagramRenderer for ChromeRenderer {
         tab.wait_for_element("body")?;
 
         // Execute rendering via draw.io's render() function
-        let escaped_xml = xml.replace('\\', "\\\\").replace('`', "\\`").replace('$', "\\$");
+        let escaped_xml = xml
+            .replace('\\', "\\\\")
+            .replace('`', "\\`")
+            .replace('$', "\\$");
         let js = format!(
             r#"
             (() => {{

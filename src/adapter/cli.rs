@@ -71,8 +71,7 @@ pub fn run() -> anyhow::Result<()> {
             chromium_path,
         } => {
             let xml = std::fs::read_to_string(&input)?;
-            let renderer =
-                crate::infra::chrome_renderer::ChromeRenderer::new(chromium_path);
+            let renderer = crate::infra::chrome_renderer::ChromeRenderer::new(chromium_path);
             let result = crate::usecase::export::export_drawio_to_png(&renderer, &xml, scale)?;
             std::fs::write(&output, &result)?;
             eprintln!(
