@@ -1,2 +1,5 @@
 /target
 Cargo.lock
+*.png
+!tests/fixtures/*.png
+coverage/

@@ -9,7 +9,7 @@
 
 ### Step 1.1: プロジェクト初期化
 
-- [ ] `Cargo.toml` を作成（ワークスペースではなく単体クレート）
+- [x] `Cargo.toml` を作成（ワークスペースではなく単体クレート） ✅ 2026-03-19
 
 ```toml
 [package]
@@ -46,7 +46,7 @@ version = "1.0"
 optional = true
 ```
 
-- [ ] `.gitignore` を更新
+- [x] `.gitignore` ✅ 2026-03-19 を更新
 
 ```gitignore
 /target
@@ -55,7 +55,7 @@ Cargo.lock
 !tests/fixtures/*.png
 ```
 
-- [ ] `Dockerfile` を作成
+- [x] `Dockerfile` ✅ 2026-03-19 を作成
 
 ```dockerfile
 FROM rust:1.75-slim AS builder
@@ -67,7 +67,7 @@ COPY --from=builder /app/target/release/drawio-tools /usr/local/bin/
 ENTRYPOINT ["drawio-tools"]
 ```
 
-- [ ] `src/main.rs` に最小限のエントリポイントを作成
+- [x] `src/main.rs` ✅ 2026-03-19 に最小限のエントリポイントを作成
 
 ```rust
 use clap::{Parser, Subcommand};
@@ -99,8 +99,8 @@ fn main() -> anyhow::Result<()> {
 
 PNG バイナリを解析してチャンク一覧を取得するドメインモデルを実装する。
 
-- [ ] `src/domain/mod.rs` を作成（`pub mod png;` をエクスポート）
-- [ ] `src/domain/png.rs` に以下の構造体・関数を実装
+- [x] `src/domain/mod.rs` を作成（`pub mod png;` をエクスポート） ✅ 2026-03-19
+- [x] `src/domain/png.rs` ✅ 2026-03-19 に以下の構造体・関数を実装
 
 ```rust
 /// PNG チャンクの構造体
@@ -149,8 +149,8 @@ pub fn calc_crc(chunk_type: &[u8; 4], data: &[u8]) -> u32 {
 
 PNG チャンクから draw.io XML を抽出するドメインロジックを実装する。
 
-- [ ] `src/domain/mod.rs` に `pub mod extract;` を追加
-- [ ] `src/domain/extract.rs` に以下を実装
+- [x] `src/domain/mod.rs` に `pub mod extract;` ✅ 2026-03-19 を追加
+- [x] `src/domain/extract.rs` ✅ 2026-03-19 に以下を実装
 
 ```rust
 use flate2::read::ZlibDecoder;
@@ -240,8 +240,8 @@ pub fn extract_drawio_xml(chunks: &[crate::domain::png::PngChunk]) -> anyhow::Re
 
 PNG に draw.io XML を zTXt チャンクとして注入するドメインロジックを実装する。
 
-- [ ] `src/domain/mod.rs` に `pub mod embed;` を追加
-- [ ] `src/domain/embed.rs` に以下を実装
+- [x] `src/domain/mod.rs` に `pub mod embed;` ✅ 2026-03-19 を追加
+- [x] `src/domain/embed.rs` ✅ 2026-03-19 に以下を実装
 
 ```rust
 use flate2::write::ZlibEncoder;
@@ -291,8 +291,8 @@ pub fn inject_ztxt_chunk(
 
 ドメインロジックを組み合わせたユースケースを実装する。
 
-- [ ] `src/usecase/mod.rs` を作成（`pub mod extract; pub mod embed;`）
-- [ ] `src/usecase/extract.rs` — ファイルパスを受け取り XML 文字列を返す
+- [x] `src/usecase/mod.rs` ✅ 2026-03-19 を作成（`pub mod extract; pub mod embed;`）
+- [x] `src/usecase/extract.rs` ✅ 2026-03-19 — ファイルパスを受け取り XML 文字列を返す
 
 ```rust
 use std::fs;
@@ -306,7 +306,7 @@ pub fn extract_xml_from_png(input_path: &str) -> anyhow::Result<String> {
 }
 ```
 
-- [ ] `src/usecase/embed.rs` — drawio XML + PNG パスを受け取り、埋め込み済み PNG バイナリを返す
+- [x] `src/usecase/embed.rs` ✅ 2026-03-19 — drawio XML + PNG パスを受け取り、埋め込み済み PNG バイナリを返す
 
 ```rust
 use std::fs;
@@ -330,8 +330,8 @@ pub fn embed_xml_into_png(xml_path: &str, png_path: &str) -> anyhow::Result<Vec<
 
 clap のサブコマンド定義と、ユースケースの呼び出しを実装する。
 
-- [ ] `src/adapter/mod.rs` を作成（`pub mod cli;`）
-- [ ] `src/adapter/cli.rs` に以下を実装
+- [x] `src/adapter/mod.rs` ✅ 2026-03-19 を作成（`pub mod cli;`）
+- [x] `src/adapter/cli.rs` ✅ 2026-03-19 に以下を実装
 
 ```rust
 use clap::{Parser, Subcommand};
@@ -385,7 +385,7 @@ pub fn run() -> anyhow::Result<()> {
 }
 ```
 
-- [ ] `src/main.rs` を更新して `adapter::cli::run()` を呼ぶ
+- [x] `src/main.rs` ✅ 2026-03-19 を更新して `adapter::cli::run()` を呼ぶ
 
 ```rust
 mod domain;
@@ -403,7 +403,7 @@ fn main() -> anyhow::Result<()> {
 
 ### Step 1.7: テストフィクスチャ作成
 
-- [ ] `tests/fixtures/simple.drawio` — テスト用の最小限 drawio XML を作成
+- [x] `tests/fixtures/simple.drawio` ✅ 2026-03-19 — テスト用の最小限 drawio XML を作成
 
 ```xml
 <mxfile>
@@ -421,15 +421,15 @@ fn main() -> anyhow::Result<()> {
 </mxfile>
 ```
 
-- [ ] `tests/fixtures/simple_embedded.png` — Node.js スクリプトで事前生成した XML 埋め込み PNG を配置
+- [x] `tests/fixtures/simple_embedded.png` ✅ 2026-03-19 — Node.js スクリプトで事前生成した XML 埋め込み PNG を配置
   - 手順: `node /tmp/drawio-test/export_with_embed.mjs` で生成 → コピー
-- [ ] `tests/fixtures/plain.png` — XML 未埋め込みの通常 PNG（1x1 ピクセル等）を配置
+- [x] `tests/fixtures/plain.png` ✅ 2026-03-19 — XML 未埋め込みの通常 PNG（1x1 ピクセル等）を配置
 
 ---
 
 ### Step 1.8: ユニットテスト — 正常系
 
-- [ ] `src/domain/png.rs` 内に `#[cfg(test)] mod tests` を追加
+- [x] `src/domain/png.rs` ✅ 2026-03-19 内に `#[cfg(test)] mod tests` を追加
 
 ```rust
 #[cfg(test)]
@@ -466,7 +466,7 @@ mod tests {
 }
 ```
 
-- [ ] `src/domain/extract.rs` 内にユニットテスト追加
+- [x] `src/domain/extract.rs` ✅ 2026-03-19 内にユニットテスト追加
 
 ```rust
 #[cfg(test)]
@@ -503,7 +503,7 @@ mod tests {
 }
 ```
 
-- [ ] `src/domain/embed.rs` 内にユニットテスト追加
+- [x] `src/domain/embed.rs` ✅ 2026-03-19 内にユニットテスト追加
 
 ```rust
 #[cfg(test)]
@@ -536,7 +536,7 @@ mod tests {
 
 ### Step 1.9: ユニットテスト — 異常系
 
-- [ ] `src/domain/png.rs` の異常系テスト
+- [x] `src/domain/png.rs` ✅ 2026-03-19 の異常系テスト
 
 ```rust
 #[test]
@@ -571,7 +571,7 @@ fn test_parse_chunks_truncated_chunk() {
 }
 ```
 
-- [ ] `src/domain/extract.rs` の異常系テスト
+- [x] `src/domain/extract.rs` ✅ 2026-03-19 の異常系テスト
 
 ```rust
 #[test]
@@ -597,7 +597,7 @@ fn test_decode_ztxt_invalid_compressed_data() {
 }
 ```
 
-- [ ] `src/domain/embed.rs` の異常系テスト
+- [x] `src/domain/embed.rs` ✅ 2026-03-19 の異常系テスト
 
 ```rust
 #[test]
@@ -619,7 +619,7 @@ fn test_inject_ztxt_chunk_no_iend() {
 
 ### Step 1.10: 統合テスト — ラウンドトリップ検証
 
-- [ ] `tests/roundtrip_test.rs` を作成
+- [x] `tests/roundtrip_test.rs` ✅ 2026-03-19 を作成
 
 ```rust
 use assert_cmd::Command;
@@ -696,16 +696,16 @@ fn test_embed_and_reextract_roundtrip() {
 
 ### Step 1.11: Phase 1 品質ゲート
 
-- [ ] テストカバレッジを計測し 90% 以上を確認する
+- [x] テストカバレッジ ✅ 2026-03-19を計測し 90% 以上を確認する
   - `cargo install cargo-tarpaulin` でインストール
   - `cargo tarpaulin --out Html --output-dir coverage/` で計測
   - 90% 未満の場合: カバレッジレポートを確認し、未テスト箇所に対して正常系・異常系テストを追加
   - 例: 分岐カバレッジが不足する `decode_payload()` の各分岐に対して追加テスト
-- [ ] ビルド確認
+- [x] ビルド確認 ✅ 2026-03-19
   - `cargo build --release --no-default-features` が成功すること
   - `cargo clippy -- -D warnings` が警告なしで通ること
   - `cargo fmt --check` がフォーマット済みであること
-- [ ] Docker ビルド確認
+- [ ] Docker ビルド確認 (skipped: no Docker in environment)
   - `docker build -t drawio-tools:phase1 .` が成功すること
   - `docker run --rm drawio-tools:phase1 --help` でヘルプが表示されること
   - `docker run --rm -v $(pwd)/tests/fixtures:/data drawio-tools:phase1 extract /data/simple_embedded.png` で XML が出力されること
@@ -834,7 +834,7 @@ impl DiagramRenderer for ChromeRenderer {
 
 レンダリング + 埋め込みのフルパイプラインを実装する。
 
-- [ ] `src/usecase/mod.rs` に `pub mod export;` を追加
+- [x] `src/usecase/mod.rs` ✅ 2026-03-19 に `pub mod export;` を追加
 - [ ] `src/usecase/export.rs` に以下を実装
 
 ```rust
@@ -863,7 +863,7 @@ pub fn export_drawio_to_png(
 
 ### Step 2.4: CLI アダプターに export コマンドを追加
 
-- [ ] `src/adapter/cli.rs` の `Commands` enum に `Export` を追加
+- [x] `src/adapter/cli.rs` ✅ 2026-03-19 の `Commands` enum に `Export` を追加
 
 ```rust
 /// Render draw.io XML to PNG with embedded XML
@@ -1202,7 +1202,7 @@ BINARY_NAME="drawio-tools"
 
 ### Step 3.4: Docker イメージビルド & プッシュ
 
-- [ ] `Dockerfile` を最終版に更新（マルチステージビルド）
+- [x] `Dockerfile` ✅ 2026-03-19 を最終版に更新（マルチステージビルド）
 
 ```dockerfile
 FROM rust:1.75-bookworm AS builder

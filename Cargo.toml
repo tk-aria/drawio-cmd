@@ -1,0 +1,26 @@
+[workspace]
+
+[package]
+name = "drawio-tools"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+description = "Draw.io PNG/XML bidirectional conversion CLI"
+
+[[bin]]
+name = "drawio-tools"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+flate2 = "1.1"
+crc32fast = "1.4"
+anyhow = "1.0"
+percent-encoding = "2.3"
+base64 = "0.22"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "3.1"
+tempfile = "3.14"
