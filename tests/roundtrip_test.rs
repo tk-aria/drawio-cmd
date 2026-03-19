@@ -4,7 +4,7 @@ use tempfile::NamedTempFile;
 
 #[test]
 fn test_extract_outputs_xml_to_stdout() {
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("extract")
         .arg("tests/fixtures/simple_embedded.png")
@@ -16,7 +16,7 @@ fn test_extract_outputs_xml_to_stdout() {
 #[test]
 fn test_extract_outputs_xml_to_file() {
     let output = NamedTempFile::new().unwrap();
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("extract")
         .arg("tests/fixtures/simple_embedded.png")
@@ -30,7 +30,7 @@ fn test_extract_outputs_xml_to_file() {
 
 #[test]
 fn test_extract_plain_png_fails() {
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("extract")
         .arg("tests/fixtures/plain.png")
@@ -41,7 +41,7 @@ fn test_extract_plain_png_fails() {
 
 #[test]
 fn test_extract_nonexistent_file_fails() {
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("extract")
         .arg("nonexistent.png")
@@ -54,7 +54,7 @@ fn test_embed_and_reextract_roundtrip() {
     let output_png = NamedTempFile::new().unwrap();
 
     // embed: simple.drawio + plain.png → output.png
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("embed")
         .arg("tests/fixtures/simple.drawio")
@@ -65,7 +65,7 @@ fn test_embed_and_reextract_roundtrip() {
         .success();
 
     // extract: output.png → stdout に XML
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("extract")
         .arg(output_png.path())
@@ -77,7 +77,7 @@ fn test_embed_and_reextract_roundtrip() {
 
 #[test]
 fn test_help_output() {
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("--help")
         .assert()
@@ -88,10 +88,10 @@ fn test_help_output() {
 
 #[test]
 fn test_version_output() {
-    Command::cargo_bin("drawio-tools")
+    Command::cargo_bin("drawio-cmd")
         .unwrap()
         .arg("--version")
         .assert()
         .success()
-        .stdout(predicate::str::contains("drawio-tools"));
+        .stdout(predicate::str::contains("drawio-cmd"));
 }

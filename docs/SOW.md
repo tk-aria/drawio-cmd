@@ -1,6 +1,6 @@
-# Statement of Work (SoW): drawio-tools
+# Statement of Work (SoW): drawio-cmd
 
-- **Project**: drawio-tools — Draw.io PNG/XML 双方向変換 CLI ツール
+- **Project**: drawio-cmd — Draw.io PNG/XML 双方向変換 CLI ツール
 - **Version**: 1.0
 - **Date**: 2026-03-19
 - **Reference**: RFC-001
@@ -16,7 +16,7 @@ PNG zTXt チャンクを介した XML の抽出・埋め込み、および headl
 
 | ID | 成果物 | 説明 |
 |---|---|---|
-| D-1 | `drawio-tools` CLI バイナリ | extract / embed / export サブコマンドを持つシングルバイナリ |
+| D-1 | `drawio-cmd` CLI バイナリ | extract / embed / export サブコマンドを持つシングルバイナリ |
 | D-2 | RFC ドキュメント | 技術仕様・設計方針（RFC-001） |
 | D-3 | SoW ドキュメント | 本文書 |
 | D-4 | 統合テスト | テスト用 .drawio ファイル + テストスイート |
@@ -97,7 +97,7 @@ PNG zTXt チャンクを介した XML の抽出・埋め込み、および headl
 ## 5. ディレクトリ構成
 
 ```
-drawio-tools/
+drawio-cmd/
 ├── Cargo.toml
 ├── docs/
 │   ├── RFC.md
@@ -134,9 +134,9 @@ drawio-tools/
 
 ### 7.1 機能要件
 
-- [ ] `drawio-tools extract` で XML 埋め込み PNG から XML を正しく抽出できる
-- [ ] `drawio-tools embed` で PNG に XML を埋め込み、draw.io で再編集可能な PNG を出力できる
-- [ ] `drawio-tools export` で drawio XML から PNG をレンダリングし XML を埋め込める
+- [ ] `drawio-cmd extract` で XML 埋め込み PNG から XML を正しく抽出できる
+- [ ] `drawio-cmd embed` で PNG に XML を埋め込み、draw.io で再編集可能な PNG を出力できる
+- [ ] `drawio-cmd export` で drawio XML から PNG をレンダリングし XML を埋め込める
 - [ ] `-o` オプション省略時は標準出力に出力される
 - [ ] XML 未埋め込み PNG に対して明確なエラーメッセージを表示する
 

@@ -1,8 +1,8 @@
-# RFC: drawio-tools — Draw.io PNG/XML 双方向変換 CLI ツール
+# RFC: drawio-cmd — Draw.io PNG/XML 双方向変換 CLI ツール
 
 - **RFC ID**: RFC-001
 - **Status**: Draft
-- **Author**: drawio-tools contributors
+- **Author**: drawio-cmd contributors
 - **Created**: 2026-03-19
 
 ## 1. 概要
@@ -73,7 +73,7 @@ PNG File
 ### 4.1 サブコマンド
 
 ```
-drawio-tools <COMMAND>
+drawio-cmd <COMMAND>
 
 Commands:
   extract   PNG から draw.io XML を抽出
@@ -85,37 +85,37 @@ Commands:
 
 ```bash
 # 標準出力に出力
-drawio-tools extract diagram.png
+drawio-cmd extract diagram.png
 
 # ファイルに出力
-drawio-tools extract diagram.png -o diagram.drawio
+drawio-cmd extract diagram.png -o diagram.drawio
 
 # パイプ連携
-drawio-tools extract diagram.png | xmllint --format -
+drawio-cmd extract diagram.png | xmllint --format -
 ```
 
 ### 4.3 embed
 
 ```bash
 # 既存 PNG に XML を注入
-drawio-tools embed diagram.drawio image.png -o output.png
+drawio-cmd embed diagram.drawio image.png -o output.png
 ```
 
 ### 4.4 export
 
 ```bash
 # XML → PNG レンダリング + XML 埋め込み
-drawio-tools export diagram.drawio -o output.png
+drawio-cmd export diagram.drawio -o output.png
 
 # スケーリング指定
-drawio-tools export diagram.drawio -o output.png --scale 2.0
+drawio-cmd export diagram.drawio -o output.png --scale 2.0
 ```
 
 ## 5. アーキテクチャ
 
 ```
 ┌─────────────────────────────────────────┐
-│              drawio-tools               │
+│              drawio-cmd               │
 ├─────────┬──────────┬────────────────────┤
 │ extract │  embed   │      export        │
 │         │          │  ┌──────────────┐  │

@@ -1,7 +1,7 @@
 [workspace]
 
 [package]
-name = "drawio-tools"
+name = "drawio-cmd"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.75"
@@ -9,7 +9,7 @@ license = "MIT"
 description = "Draw.io PNG/XML bidirectional conversion CLI"
 
 [[bin]]
-name = "drawio-tools"
+name = "drawio-cmd"
 path = "src/main.rs"
 
 [dependencies]

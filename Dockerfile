@@ -5,5 +5,5 @@ COPY src/ src/
 RUN cargo build --release --no-default-features
 
 FROM gcr.io/distroless/cc-debian12:nonroot
-COPY --from=builder /app/target/release/drawio-tools /usr/local/bin/
-ENTRYPOINT ["drawio-tools"]
+COPY --from=builder /app/target/release/drawio-cmd /usr/local/bin/
+ENTRYPOINT ["drawio-cmd"]

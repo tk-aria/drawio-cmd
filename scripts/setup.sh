@@ -2,8 +2,8 @@
 set -e
 
 DEFAULT_INSTALL_PATH="/usr/local/bin"
-REPO="tk-aria/drawio-tools"
-BINARY_NAME="drawio-tools"
+REPO="tk-aria/drawio-cmd"
+BINARY_NAME="drawio-cmd"
 
 _latest_version() {
     curl -sSfL "https://api.github.com/repos/${REPO}/releases/latest" \
@@ -44,8 +44,8 @@ _download_url() {
 }
 
 cmd_install() {
-    local install_path="${DRAWIO_TOOLS_INSTALL_PATH:-$DEFAULT_INSTALL_PATH}"
-    local version="${DRAWIO_TOOLS_VERSION:-$(_latest_version)}"
+    local install_path="${DRAWIO_CMD_INSTALL_PATH:-$DEFAULT_INSTALL_PATH}"
+    local version="${DRAWIO_CMD_VERSION:-$(_latest_version)}"
     local arch
     arch=$(_detect_arch)
     local os
@@ -106,7 +106,7 @@ cmd_install() {
 }
 
 cmd_uninstall() {
-    local install_path="${DRAWIO_TOOLS_INSTALL_PATH:-$DEFAULT_INSTALL_PATH}"
+    local install_path="${DRAWIO_CMD_INSTALL_PATH:-$DEFAULT_INSTALL_PATH}"
     local binary="${install_path}/${BINARY_NAME}"
 
     if [ ! -f "$binary" ]; then
@@ -133,18 +133,18 @@ Commands:
   uninstall   Remove ${BINARY_NAME}
 
 Environment variables:
-  DRAWIO_TOOLS_INSTALL_PATH  Installation directory (default: ${DEFAULT_INSTALL_PATH})
-  DRAWIO_TOOLS_VERSION       Version to install (default: latest)
+  DRAWIO_CMD_INSTALL_PATH  Installation directory (default: ${DEFAULT_INSTALL_PATH})
+  DRAWIO_CMD_VERSION       Version to install (default: latest)
 
 Examples:
   # Install latest version
   curl -sSLf https://raw.githubusercontent.com/${REPO}/main/scripts/setup.sh | sh -s install
 
   # Install specific version
-  DRAWIO_TOOLS_VERSION=v0.1.0 sh setup.sh install
+  DRAWIO_CMD_VERSION=v0.1.0 sh setup.sh install
 
   # Install to custom path
-  DRAWIO_TOOLS_INSTALL_PATH=\$HOME/.local/bin sh setup.sh install
+  DRAWIO_CMD_INSTALL_PATH=\$HOME/.local/bin sh setup.sh install
 
   # Uninstall
   sh setup.sh uninstall

@@ -3,7 +3,7 @@ use std::io::Write;
 
 #[derive(Parser)]
 #[command(
-    name = "drawio-tools",
+    name = "drawio-cmd",
     version,
     about = "Draw.io PNG/XML bidirectional conversion CLI"
 )]

@@ -9,19 +9,19 @@ Phase 4（最終検証）完了。全動作確認項目をパス。
 ## 動作確認結果
 
 ### extract コマンド
-- [x] `drawio-tools extract tests/fixtures/simple_embedded.png` → stdout に XML 出力 ✅
-- [x] `drawio-tools extract tests/fixtures/simple_embedded.png -o out.drawio` → ファイル出力 (371 bytes) ✅
-- [x] `drawio-tools extract tests/fixtures/plain.png` → エラーメッセージ表示 ✅
-- [x] `drawio-tools extract nonexistent.png` → エラーメッセージ表示 ✅
+- [x] `drawio-cmd extract tests/fixtures/simple_embedded.png` → stdout に XML 出力 ✅
+- [x] `drawio-cmd extract tests/fixtures/simple_embedded.png -o out.drawio` → ファイル出力 (371 bytes) ✅
+- [x] `drawio-cmd extract tests/fixtures/plain.png` → エラーメッセージ表示 ✅
+- [x] `drawio-cmd extract nonexistent.png` → エラーメッセージ表示 ✅
 
 ### embed コマンド
-- [x] `drawio-tools embed simple.drawio plain.png -o out.png` → 埋め込み PNG 生成 ✅
+- [x] `drawio-cmd embed simple.drawio plain.png -o out.png` → 埋め込み PNG 生成 ✅
 - [x] 生成した out.png を extract で再抽出 → 元の XML と一致確認 ✅
 
 ### CLI 一般
-- [x] `drawio-tools --help` → ヘルプ表示 (extract/embed/help) ✅
-- [x] `drawio-tools --version` → "drawio-tools 0.1.0" 表示 ✅
-- [x] `drawio-tools extract --help` → サブコマンドヘルプ表示 ✅
+- [x] `drawio-cmd --help` → ヘルプ表示 (extract/embed/help) ✅
+- [x] `drawio-cmd --version` → "drawio-cmd 0.1.0" 表示 ✅
+- [x] `drawio-cmd extract --help` → サブコマンドヘルプ表示 ✅
 
 ### テスト
 - ユニットテスト: 19/19 通過 ✅
