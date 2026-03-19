@@ -19,7 +19,17 @@ pub fn create_ztxt_data(xml: &str) -> anyhow::Result<Vec<u8>> {
 }
 
 /// 既存の PNG チャンク一覧に zTXt チャンクを IEND の直前に挿入する
+/// 既存の mxGraphModel zTXt チャンクがあれば先に削除（更新対応）
 pub fn inject_ztxt_chunk(chunks: &mut Vec<PngChunk>, xml: &str) -> anyhow::Result<()> {
+    // Remove existing mxGraphModel zTXt chunks
+    chunks.retain(|c| {
+        if &c.chunk_type == b"zTXt" {
+            !c.data.starts_with(b"mxGraphModel\0")
+        } else {
+            true
+        }
+    });
+
     let ztxt_data = create_ztxt_data(xml)?;
     let ztxt_chunk = PngChunk {
         chunk_type: *b"zTXt",

@@ -66,27 +66,33 @@
 
         <!-- Swimlane: Finance -->
         <mxCell id="lane-finance" value="Finance Department" style="shape=swimlane;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="400" width="1020" height="160" as="geometry"/>
+          <mxGeometry x="40" y="400" width="1020" height="200" as="geometry"/>
         </mxCell>
 
         <!-- Process Payment -->
         <mxCell id="process-payment" value="Process&#xa;Payment" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="lane-finance">
-          <mxGeometry x="670" y="50" width="120" height="60" as="geometry"/>
+          <mxGeometry x="580" y="50" width="120" height="60" as="geometry"/>
         </mxCell>
 
         <!-- Record -->
         <mxCell id="record" value="Record in&#xa;Accounting System" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="lane-finance">
-          <mxGeometry x="840" y="50" width="140" height="60" as="geometry"/>
+          <mxGeometry x="740" y="50" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- NEW: Send Receipt -->
+        <mxCell id="send-receipt" value="Send&#xa;Receipt" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="lane-finance">
+          <mxGeometry x="740" y="130" width="140" height="60" as="geometry"/>
         </mxCell>
 
         <!-- End -->
         <mxCell id="end" value="" style="ellipse;fillColor=#f8cecc;strokeColor=#b85450;aspect=fixed;" vertex="1" parent="lane-finance">
-          <mxGeometry x="940" y="130" width="40" height="40" as="geometry"/>
+          <mxGeometry x="940" y="140" width="40" height="40" as="geometry"/>
         </mxCell>
 
         <!-- Edges in Finance lane -->
         <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="process-payment" target="record" parent="lane-finance"/>
-        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="record" target="end" parent="lane-finance"/>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="record" target="send-receipt" parent="lane-finance"/>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="send-receipt" target="end" parent="lane-finance"/>
 
         <!-- Cross-lane edges (parent=1) -->
         <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="submit" target="review" parent="1"/>
